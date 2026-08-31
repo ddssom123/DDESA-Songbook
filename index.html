@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DDESA Songbook</title>
+  <title>뜨사 노래책</title>
 
   <style>
     :root {
@@ -41,8 +42,7 @@
     }
 
     button,
-    input,
-    select {
+    input {
       font: inherit;
     }
 
@@ -73,7 +73,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
     }
 
     .logo {
@@ -81,7 +80,6 @@
       font-weight: 800;
       letter-spacing: 2px;
       font-size: 21px;
-      white-space: nowrap;
     }
 
     .logo span {
@@ -90,11 +88,6 @@
       letter-spacing: 3px;
       opacity: 0.6;
       margin-top: 2px;
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 8px;
     }
 
     .icon-button {
@@ -106,10 +99,6 @@
       color: var(--white);
 
       border-radius: 50%;
-    }
-
-    .icon-button:hover {
-      background: rgba(171, 210, 250, 0.2);
     }
 
     /* HERO */
@@ -145,7 +134,7 @@
       max-width: 620px;
     }
 
-    /* SEARCH */
+    /* CONTROLS */
 
     .controls {
       max-width: 1250px;
@@ -205,10 +194,6 @@
       color: var(--white);
     }
 
-    .control-button:hover {
-      background: rgba(171, 210, 250, 0.2);
-    }
-
     /* FILTERS */
 
     .filters {
@@ -238,8 +223,8 @@
       color: var(--muted);
     }
 
-    .filter:hover,
-    .filter.active {
+    .filter.active,
+    .filter:hover {
       color: var(--navy);
       background: var(--blue);
       border-color: var(--blue);
@@ -268,9 +253,7 @@
 
     .song-grid {
       display: grid;
-
-      grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
 
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -319,18 +302,12 @@
       background: transparent;
       color: var(--white);
 
-      transition:
-        background 0.15s ease,
-        padding 0.15s ease;
+      transition: 0.15s ease;
     }
 
     .song:hover {
       background: var(--blue-soft);
       padding-left: 23px;
-    }
-
-    .song:last-child {
-      border-bottom: none;
     }
 
     .song-info {
@@ -339,6 +316,7 @@
 
     .song-title {
       font-weight: 650;
+
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -360,16 +338,17 @@
 
       color: var(--blue);
       font-size: 11px;
-      opacity: 0.8;
     }
 
     /* EMPTY */
 
     .empty {
       display: none;
+
       padding: 70px 20px;
 
       text-align: center;
+
       color: var(--muted);
     }
 
@@ -387,6 +366,7 @@
       padding: 20px;
 
       background: rgba(0, 0, 0, 0.65);
+
       backdrop-filter: blur(8px);
     }
 
@@ -416,30 +396,37 @@
       border-radius: 50%;
 
       border: 1px solid var(--border);
+
       background: transparent;
       color: var(--white);
     }
 
     .modal-category {
       color: var(--blue);
+
       font-size: 11px;
       letter-spacing: 2px;
+
       margin-bottom: 12px;
     }
 
     .modal-title {
       font-size: 30px;
+
       margin-bottom: 5px;
     }
 
     .modal-artist {
       color: var(--muted);
+
       margin-bottom: 25px;
     }
 
     .details {
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
+
       gap: 10px;
     }
 
@@ -447,6 +434,7 @@
       padding: 14px;
 
       border-radius: 12px;
+
       background: var(--blue-soft);
 
       border: 1px solid rgba(171, 210, 250, 0.1);
@@ -454,12 +442,15 @@
 
     .detail-label {
       font-size: 10px;
+
       color: var(--muted);
+
       margin-bottom: 5px;
     }
 
     .detail-value {
       color: var(--blue);
+
       font-weight: 700;
     }
 
@@ -467,6 +458,7 @@
       width: 100%;
 
       margin-top: 20px;
+
       padding: 14px;
 
       border: none;
@@ -478,29 +470,11 @@
       font-weight: 800;
     }
 
-    .copy-button:hover {
-      opacity: 0.9;
-    }
-
-    .video-link {
-      display: block;
-
-      margin-top: 10px;
-      padding: 13px;
-
-      border: 1px solid var(--border);
-      border-radius: 12px;
-
-      text-align: center;
-      text-decoration: none;
-
-      color: var(--blue);
-    }
-
     /* TOAST */
 
     .toast {
       position: fixed;
+
       left: 50%;
       bottom: 28px;
 
@@ -519,6 +493,7 @@
       font-weight: 700;
 
       opacity: 0;
+
       pointer-events: none;
 
       transition: 0.25s ease;
@@ -526,6 +501,7 @@
 
     .toast.show {
       opacity: 1;
+
       transform: translate(-50%, 0);
     }
 
@@ -546,6 +522,7 @@
     /* MOBILE */
 
     @media (max-width: 850px) {
+
       .song-grid {
         grid-template-columns: 1fr;
       }
@@ -566,9 +543,11 @@
       .search-box {
         grid-column: 1 / -1;
       }
+
     }
 
     @media (max-width: 560px) {
+
       .hero {
         padding-top: 55px;
       }
@@ -599,13 +578,19 @@
       .control-button {
         width: 100%;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
+  <!-- HEADER -->
+
   <header>
+
     <div class="header-inner">
 
       <div class="logo">
@@ -613,38 +598,40 @@
         <span>SONGBOOK</span>
       </div>
 
-      <div class="header-actions">
-        <button
-          class="icon-button"
-          id="themeButton"
-          title="테마 변경"
-          aria-label="테마 변경">
-          ☾
-        </button>
-      </div>
+      <button
+        class="icon-button"
+        id="themeButton"
+        aria-label="테마 변경">
+        ☾
+      </button>
 
     </div>
+
   </header>
 
+
+  <!-- HERO -->
 
   <main>
 
     <section class="hero">
 
-      <div>
-        <div class="eyebrow">DDESA PROFILE</div>
-
-        <h1>
-          SONG<span>BOOK</span>
-        </h1>
-
-        <p class="hero-description">
-          노래를 찾아보고 클릭 한 번으로 곡 정보를 복사해보세요.
-        </p>
+      <div class="eyebrow">
+        뜨사 DDESA 
       </div>
+
+      <h1>
+        SONG<span>BOOK</span>
+      </h1>
+
+      <p class="hero-description">
+        노래를 찾아보고 클릭 한 번으로 곡 정보를 복사해보세요.
+      </p>
 
     </section>
 
+
+    <!-- SEARCH / FILTER -->
 
     <section class="controls">
 
@@ -652,21 +639,25 @@
 
         <div class="search-box">
 
-          <span class="search-icon">⌕</span>
+          <span class="search-icon">
+            ⌕
+          </span>
 
           <input
             id="searchInput"
             type="search"
-            placeholder="곡명, 가수, 초성으로 검색..."
+            placeholder="곡명, 가수, 장르로 검색..."
             autocomplete="off">
 
         </div>
+
 
         <button
           class="control-button"
           id="randomButton">
           🎲 랜덤
         </button>
+
 
         <button
           class="control-button"
@@ -677,29 +668,47 @@
       </div>
 
 
-      <div class="filters" id="filters">
+      <div class="filters">
 
-        <button class="filter active" data-category="전체">
+        <button
+          class="filter active"
+          data-category="전체">
           전체
         </button>
 
-        <button class="filter" data-category="발라드">
-          발라드
-        </button>
-
-        <button class="filter" data-category="댄스">
-          댄스
-        </button>
-
-        <button class="filter" data-category="R&B">
+            <button
+          class="filter"
+          data-category="R&B">
           R&B
         </button>
 
-        <button class="filter" data-category="POP">
+        <button
+          class="filter"
+          data-category="힙합 / 랩">
+          합합 / 랩
+        </button>
+
+        <button
+          class="filter"
+          data-category="POP">
           POP
         </button>
 
-        <button class="filter" data-category="기타">
+          <button
+          class="filter"
+          data-category="K-POP">
+          K-POP
+        </button>
+
+          <button
+          class="filter"
+          data-category="J-POP">
+          J-POP
+        </button>
+        
+        <button
+          class="filter"
+          data-category="기타">
           기타
         </button>
 
@@ -708,20 +717,30 @@
     </section>
 
 
+    <!-- SONGBOOK -->
+
     <section class="songbook">
 
       <div class="songbook-top">
 
-        <div class="result-count" id="resultCount">
+        <div
+          class="result-count"
+          id="resultCount">
           총 12곡
         </div>
 
       </div>
 
 
-      <div class="song-grid" id="songGrid"></div>
+      <div
+        class="song-grid"
+        id="songGrid">
+      </div>
 
-      <div class="empty" id="emptyState">
+
+      <div
+        class="empty"
+        id="emptyState">
         검색 결과가 없습니다.
       </div>
 
@@ -730,13 +749,11 @@
   </main>
 
 
-  <!-- SONG DETAIL MODAL -->
+  <!-- SONG DETAILS -->
 
   <div
     class="modal"
-    id="songModal"
-    role="dialog"
-    aria-modal="true">
+    id="songModal">
 
     <div class="modal-card">
 
@@ -746,15 +763,24 @@
         ×
       </button>
 
-      <div class="modal-category" id="modalCategory">
+
+      <div
+        class="modal-category"
+        id="modalCategory">
         CATEGORY
       </div>
 
-      <h2 class="modal-title" id="modalTitle">
+
+      <h2
+        class="modal-title"
+        id="modalTitle">
         곡명
       </h2>
 
-      <p class="modal-artist" id="modalArtist">
+
+      <p
+        class="modal-artist"
+        id="modalArtist">
         가수
       </p>
 
@@ -762,23 +788,32 @@
       <div class="details">
 
         <div class="detail">
-          <div class="detail-label">KEY</div>
-          <div class="detail-value" id="modalKey">C</div>
+
+          <div class="detail-label">
+            난이도
+          </div>
+
+          <div
+            class="detail-value"
+            id="modalDifficulty">
+            ★★★★☆
+          </div>
+
         </div>
 
-        <div class="detail">
-          <div class="detail-label">BPM</div>
-          <div class="detail-value" id="modalBpm">100</div>
-        </div>
 
         <div class="detail">
-          <div class="detail-label">난이도</div>
-          <div class="detail-value" id="modalDifficulty">★★★☆☆</div>
-        </div>
 
-        <div class="detail">
-          <div class="detail-label">분류</div>
-          <div class="detail-value" id="modalGenre">발라드</div>
+          <div class="detail-label">
+            장르
+          </div>
+
+          <div
+            class="detail-value"
+            id="modalGenre">
+            R&B
+          </div>
+
         </div>
 
       </div>
@@ -790,22 +825,16 @@
         📋 곡명 · 가수 복사
       </button>
 
-
-      <a
-        class="video-link"
-        id="videoLink"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer">
-        ▶ 영상 보기
-      </a>
-
     </div>
 
   </div>
 
 
-  <div class="toast" id="toast">
+  <!-- COPY MESSAGE -->
+
+  <div
+    class="toast"
+    id="toast">
     ✓ 복사되었습니다
   </div>
 
@@ -813,133 +842,97 @@
   <script>
 
     /*
-      ==========================================
-      SONG DATA
+    ==========================================
+    SONG DATA
 
-      Later, Supabase will replace this.
-      ==========================================
+    나중에 여기를 관리자 / Supabase와 연결할 예정.
+    ==========================================
     */
 
     const songs = [
 
       {
-        title: "밤양갱",
-        artist: "비비",
+        title: "Crush On You",
+        artist: "크러쉬",
         category: "R&B",
-        key: "C",
-        bpm: 92,
-        difficulty: 3,
-        video: "https://www.youtube.com/"
+        difficulty: 4 속련도
       },
 
       {
-        title: "Love wins all",
-        artist: "아이유",
-        category: "발라드",
-        key: "C",
-        bpm: 78,
-        difficulty: 4,
-        video: "https://www.youtube.com/"
+        title: "가끔",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "Magnetic",
-        artist: "아일릿",
-        category: "댄스",
-        key: "G",
-        bpm: 131,
-        difficulty: 3,
-        video: "https://www.youtube.com/"
+        title: "미안해 미워해 사랑해",
+        artist: "크러쉬",
+        category: "K-POP"
+        difficulty: 4 속련도
       },
 
       {
-        title: "Supernova",
-        artist: "aespa",
-        category: "댄스",
-        key: "F#",
-        bpm: 120,
-        difficulty: 4,
-        video: "https://www.youtube.com/"
+        title: "Beautiful",
+        artist: "크러쉬",
+        category: "K-POP",
+        difficulty: 4 속련도
       },
 
       {
-        title: "Ditto",
-        artist: "NewJeans",
-        category: "POP",
-        key: "F",
-        bpm: 134,
-        difficulty: 2,
-        video: "https://www.youtube.com/"
+        title: "잊어버리지마",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "한 페이지가 될 수 있게",
-        artist: "DAY6",
-        category: "밴드",
-        key: "D",
-        bpm: 157,
-        difficulty: 4,
-        video: "https://www.youtube.com/"
+        title: "Rush Hour",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "예뻤어",
-        artist: "DAY6",
-        category: "발라드",
-        key: "C",
-        bpm: 130,
-        difficulty: 3,
-        video: "https://www.youtube.com/"
+        title: "미워",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "사건의 지평선",
-        artist: "윤하",
-        category: "발라드",
-        key: "A",
-        bpm: 160,
-        difficulty: 5,
-        video: "https://www.youtube.com/"
+        title: "Monday Blues",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "퀸카",
-        artist: "(여자)아이들",
-        category: "댄스",
-        key: "B",
-        bpm: 130,
-        difficulty: 3,
-        video: "https://www.youtube.com/"
+        title: "어떻게지내",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "Hype Boy",
-        artist: "NewJeans",
-        category: "POP",
-        key: "F#",
-        bpm: 100,
-        difficulty: 2,
-        video: "https://www.youtube.com/"
+        title: "나빠",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "Attention",
-        artist: "NewJeans",
-        category: "POP",
-        key: "D",
-        bpm: 104,
-        difficulty: 2,
-        video: "https://www.youtube.com/"
+        title: "Whatever You Do",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       },
 
       {
-        title: "I AM",
-        artist: "IVE",
-        category: "댄스",
-        key: "B",
-        bpm: 122,
-        difficulty: 4,
-        video: "https://www.youtube.com/"
+        title: "티격태격",
+        artist: "크러쉬",
+        category: "R&B",
+        difficulty: 4 속련도
       }
 
     ];
@@ -970,9 +963,9 @@
 
 
     /*
-      ==========================================
-      RENDER SONGS
-      ==========================================
+    ==========================================
+    RENDER SONGS
+    ==========================================
     */
 
     function renderSongs() {
@@ -1047,7 +1040,7 @@
 
 
       /*
-        Split songs into three columns.
+      Divide songs into 3 columns.
       */
 
       const columns = [
@@ -1064,102 +1057,117 @@
       });
 
 
-      columns.forEach((columnSongs, columnIndex) => {
+      columns.forEach(
+        (columnSongs, columnIndex) => {
 
-        const column =
-          document.createElement("div");
-
-        column.className = "column";
-
-
-        const heading =
-          document.createElement("div");
-
-        heading.className =
-          "column-title";
-
-        heading.textContent =
-          ["A", "B", "C"][columnIndex];
-
-
-        column.appendChild(heading);
-
-
-        columnSongs.forEach(song => {
-
-          const button =
-            document.createElement("button");
-
-          button.className = "song";
-
-
-          const info =
+          const column =
             document.createElement("div");
 
-          info.className = "song-info";
+          column.className =
+            "column";
 
 
-          const title =
+          const heading =
             document.createElement("div");
 
-          title.className = "song-title";
-
-          title.textContent =
-            song.title;
+          heading.className =
+            "column-title";
 
 
-          const artist =
-            document.createElement("div");
-
-          artist.className = "song-artist";
-
-          artist.textContent =
-            song.artist;
+          heading.textContent =
+            ["A", "B", "C"][columnIndex];
 
 
-          info.appendChild(title);
-          info.appendChild(artist);
-
-
-          const meta =
-            document.createElement("div");
-
-          meta.className = "song-meta";
-
-          meta.textContent =
-            "클릭";
-
-
-          button.appendChild(info);
-          button.appendChild(meta);
-
-
-          /*
-            CLICKING THE SONG OPENS DETAILS.
-          */
-
-          button.addEventListener(
-            "click",
-            () => openSong(song)
+          column.appendChild(
+            heading
           );
 
 
-          column.appendChild(button);
+          columnSongs.forEach(song => {
 
-        });
+            const button =
+              document.createElement("button");
+
+            button.className =
+              "song";
 
 
-        songGrid.appendChild(column);
+            const info =
+              document.createElement("div");
 
-      });
+            info.className =
+              "song-info";
+
+
+            const title =
+              document.createElement("div");
+
+            title.className =
+              "song-title";
+
+            title.textContent =
+              song.title;
+
+
+            const artist =
+              document.createElement("div");
+
+            artist.className =
+              "song-artist";
+
+            artist.textContent =
+              song.artist;
+
+
+            info.appendChild(title);
+            info.appendChild(artist);
+
+
+            const meta =
+              document.createElement("div");
+
+            meta.className =
+              "song-meta";
+
+            meta.textContent =
+              "클릭";
+
+
+            button.appendChild(info);
+            button.appendChild(meta);
+
+
+            /*
+            Click song → details.
+            */
+
+            button.addEventListener(
+              "click",
+              () => openSong(song)
+            );
+
+
+            column.appendChild(
+              button
+            );
+
+          });
+
+
+          songGrid.appendChild(
+            column
+          );
+
+        }
+      );
 
     }
 
 
     /*
-      ==========================================
-      OPEN SONG
-      ==========================================
+    ==========================================
+    OPEN SONG
+    ==========================================
     */
 
     function openSong(song) {
@@ -1186,22 +1194,14 @@
 
 
       document.getElementById(
-        "modalKey"
-      ).textContent =
-        song.key;
-
-
-      document.getElementById(
-        "modalBpm"
-      ).textContent =
-        song.bpm;
-
-
-      document.getElementById(
         "modalDifficulty"
       ).textContent =
-        "★".repeat(song.difficulty) +
-        "☆".repeat(5 - song.difficulty);
+        "★".repeat(
+          song.difficulty
+        ) +
+        "☆".repeat(
+          5 - song.difficulty
+        );
 
 
       document.getElementById(
@@ -1210,21 +1210,17 @@
         song.category;
 
 
-      document.getElementById(
-        "videoLink"
-      ).href =
-        song.video;
-
-
-      modal.classList.add("show");
+      modal.classList.add(
+        "show"
+      );
 
     }
 
 
     /*
-      ==========================================
-      COPY
-      ==========================================
+    ==========================================
+    COPY SONG
+    ==========================================
     */
 
     document
@@ -1233,7 +1229,8 @@
         "click",
         async () => {
 
-          if (!currentSong) return;
+          if (!currentSong)
+            return;
 
 
           const text =
@@ -1242,7 +1239,10 @@
 
           try {
 
-            await navigator.clipboard.writeText(text);
+            await navigator.clipboard.writeText(
+              text
+            );
+
 
             showToast(
               "✓ 복사되었습니다"
@@ -1261,16 +1261,22 @@
 
 
     /*
-      ==========================================
-      CLOSE MODAL
-      ==========================================
+    ==========================================
+    CLOSE MODAL
+    ==========================================
     */
 
     document
       .getElementById("closeModal")
       .addEventListener(
         "click",
-        closeModal
+        () => {
+
+          modal.classList.remove(
+            "show"
+          );
+
+        }
       );
 
 
@@ -1278,60 +1284,24 @@
       "click",
       event => {
 
-        if (event.target === modal) {
-          closeModal();
+        if (
+          event.target === modal
+        ) {
+
+          modal.classList.remove(
+            "show"
+          );
+
         }
 
       }
     );
 
 
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Escape") {
-          closeModal();
-        }
-
-      }
-    );
-
-
-    function closeModal() {
-
-      modal.classList.remove("show");
-
-    }
-
-
     /*
-      ==========================================
-      TOAST
-      ==========================================
-    */
-
-    function showToast(message) {
-
-      toast.textContent =
-        message;
-
-      toast.classList.add("show");
-
-
-      setTimeout(() => {
-
-        toast.classList.remove("show");
-
-      }, 1600);
-
-    }
-
-
-    /*
-      ==========================================
-      SEARCH
-      ==========================================
+    ==========================================
+    SEARCH
+    ==========================================
     */
 
     searchInput.addEventListener(
@@ -1341,9 +1311,9 @@
 
 
     /*
-      ==========================================
-      CATEGORY FILTER
-      ==========================================
+    ==========================================
+    FILTER
+    ==========================================
     */
 
     document
@@ -1357,11 +1327,16 @@
             document
               .querySelectorAll(".filter")
               .forEach(
-                b => b.classList.remove("active")
+                b =>
+                  b.classList.remove(
+                    "active"
+                  )
               );
 
 
-            button.classList.add("active");
+            button.classList.add(
+              "active"
+            );
 
 
             selectedCategory =
@@ -1377,9 +1352,9 @@
 
 
     /*
-      ==========================================
-      RANDOM
-      ==========================================
+    ==========================================
+    RANDOM SONG
+    ==========================================
     */
 
     document
@@ -1388,27 +1363,27 @@
         "click",
         () => {
 
-          if (!songs.length) return;
-
-
           const randomSong =
             songs[
               Math.floor(
-                Math.random() * songs.length
+                Math.random() *
+                songs.length
               )
             ];
 
 
-          openSong(randomSong);
+          openSong(
+            randomSong
+          );
 
         }
       );
 
 
     /*
-      ==========================================
-      SORT
-      ==========================================
+    ==========================================
+    SORT
+    ==========================================
     */
 
     document
@@ -1434,9 +1409,9 @@
 
 
     /*
-      ==========================================
-      DARK / LIGHT
-      ==========================================
+    ==========================================
+    THEME
+    ==========================================
     */
 
     document
@@ -1459,18 +1434,37 @@
           document.getElementById(
             "themeButton"
           ).textContent =
-            light ? "☀" : "☾";
+            light
+              ? "☀"
+              : "☾";
 
         }
       );
 
 
     /*
-      INITIAL RENDER
-      */
+    ==========================================
+    INITIAL LOAD
+    ==========================================
+    */
 
     renderSongs();
 
+  </script>
+
+</body>
+</html>
+```
+  </main>
+
+  <footer>
+    © 2026 DDESA PROFILE · 팬 제작 비공식 홈페이지
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
   </script>
 
 </body>
