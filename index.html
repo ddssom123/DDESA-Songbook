@@ -1397,753 +1397,520 @@
       }
 
 
-    ];
-
-
-
-    /* =========================
-       VARIABLES
-    ========================== */
-
-    let selectedCategory = "전체";
-
-    let currentSong = null;
-
-    let alphabetical = false;
-
-
-
-    /* =========================
-       ELEMENTS
-    ========================== */
-
-    const songGrid =
-      document.getElementById(
-        "songGrid"
-      );
-
-
-    const searchInput =
-      document.getElementById(
-        "searchInput"
-      );
-
-
-    const resultCount =
-      document.getElementById(
-        "resultCount"
-      );
-
-
-    const emptyState =
-      document.getElementById(
-        "emptyState"
-      );
-
-
-    const modal =
-      document.getElementById(
-        "songModal"
-      );
-
-
-    const toast =
-      document.getElementById(
-        "toast"
-      );
-
-
-
-    /* =========================
-       RENDER SONGS
-    ========================== */
-
-    function renderSongs() {
-
-
-      const search =
-        searchInput.value
-          .trim()
-          .toLowerCase();
-
-
-
-      let filtered =
-        songs.filter(song => {
-
-
-          const matchesCategory =
-            selectedCategory === "전체" ||
-            song.category ===
-              selectedCategory;
-
-
-
-          const searchable =
-            (
-              song.title +
-              " " +
-              song.artist +
-              " " +
-              song.category
-            ).toLowerCase();
-
-
-
-          const matchesSearch =
-            searchable.includes(
-              search
-            );
-
-
-
-          return (
-            matchesCategory &&
-            matchesSearch
-          );
-
-
-        });
-
-
-
-      if (alphabetical) {
-
-
-        filtered.sort(
-          (a, b) =>
-            a.title.localeCompare(
-              b.title,
-              "ko"
-            )
-        );
-
-
-      }
-
-
-
-      resultCount.textContent =
-        `총 ${filtered.length}곡`;
-
-
-
-      songGrid.innerHTML = "";
-
-
-
-      if (
-        filtered.length === 0
-      ) {
-
-
-        songGrid.style.display =
-          "none";
-
-
-        emptyState.style.display =
-          "block";
-
-
-        return;
-
-
-      }
-
-
-
-      songGrid.style.display =
-        "grid";
-
-
-      emptyState.style.display =
-        "none";
-
-
-
-      const columns = [
-        [],
-        [],
-        []
       ];
 
 
+  let selectedCategory = "전체";
 
-      filtered.forEach(
-        (song, index) => {
 
-          columns[
-            index % 3
-          ].push(song);
+  let currentSong = null;
 
-        }
+
+  const songGrid =
+    document.getElementById("songGrid");
+
+
+  const searchInput =
+    document.getElementById("searchInput");
+
+
+  const resultCount =
+    document.getElementById("resultCount");
+
+
+  const emptyState =
+    document.getElementById("emptyState");
+
+
+  const modal =
+    document.getElementById("songModal");
+
+
+  const toast =
+    document.getElementById("toast");
+
+
+  const sortSelect =
+    document.getElementById("sortSelect");
+
+
+
+  function renderSongs() {
+
+    const search =
+      searchInput.value
+        .trim()
+        .toLowerCase();
+
+
+    let filtered =
+      songs.filter(song => {
+
+        const matchesCategory =
+          selectedCategory === "전체" ||
+          song.category === selectedCategory;
+
+
+        const searchable =
+          (
+            song.title +
+            " " +
+            song.artist +
+            " " +
+            song.category
+          ).toLowerCase();
+
+
+        const matchesSearch =
+          searchable.includes(search);
+
+
+        return (
+          matchesCategory &&
+          matchesSearch
+        );
+
+      });
+
+
+
+    /* SORT */
+
+    if (sortSelect.value === "title") {
+
+      filtered.sort(
+        (a, b) =>
+          a.title.localeCompare(
+            b.title,
+            "ko"
+          )
       );
 
+    }
 
 
-      columns.forEach(
-        (columnSongs, columnIndex) => {
+    if (sortSelect.value === "artist") {
 
-
-          const column =
-            document.createElement(
-              "div"
-            );
-
-
-          column.className =
-            "column";
-
-
-
-          const heading =
-            document.createElement(
-              "div"
-            );
-
-
-          heading.className =
-            "column-title";
-
-
-          heading.textContent =
-            ["A", "B", "C"][
-              columnIndex
-            ];
-
-
-
-          column.appendChild(
-            heading
-          );
-
-
-
-          columnSongs.forEach(
-            song => {
-
-
-              const button =
-                document.createElement(
-                  "button"
-                );
-
-
-              button.className =
-                "song";
-
-
-
-              const info =
-                document.createElement(
-                  "div"
-                );
-
-
-              info.className =
-                "song-info";
-
-
-
-              const title =
-                document.createElement(
-                  "div"
-                );
-
-
-              title.className =
-                "song-title";
-
-
-              title.textContent =
-                song.title;
-
-
-
-              const artist =
-                document.createElement(
-                  "div"
-                );
-
-
-              artist.className =
-                "song-artist";
-
-
-              artist.textContent =
-                song.artist;
-
-
-
-              info.appendChild(
-                title
-              );
-
-
-              info.appendChild(
-                artist
-              );
-
-
-
-              const meta =
-                document.createElement(
-                  "div"
-                );
-
-
-              meta.className =
-                "song-meta";
-
-
-              meta.textContent =
-                "클릭";
-
-
-
-              button.appendChild(
-                info
-              );
-
-
-              button.appendChild(
-                meta
-              );
-
-
-
-              button.addEventListener(
-                "click",
-                () =>
-                  openSong(song)
-              );
-
-
-
-              column.appendChild(
-                button
-              );
-
-
-            }
-          );
-
-
-
-          songGrid.appendChild(
-            column
-          );
-
-
-        }
+      filtered.sort(
+        (a, b) =>
+          a.artist.localeCompare(
+            b.artist,
+            "ko"
+          )
       );
-
 
     }
 
 
 
-    /* =========================
-       OPEN SONG
-    ========================== */
-
-    function openSong(song) {
+    resultCount.textContent =
+      `총 ${filtered.length}곡`;
 
 
-      currentSong = song;
+    songGrid.innerHTML = "";
 
 
+    if (filtered.length === 0) {
 
-      document.getElementById(
-        "modalCategory"
-      ).textContent =
-        song.category.toUpperCase();
+      songGrid.style.display = "none";
 
+      emptyState.style.display = "block";
 
+      return;
 
-      document.getElementById(
-        "modalTitle"
-      ).textContent =
-        song.title;
+    }
 
 
+    songGrid.style.display = "grid";
 
-      document.getElementById(
-        "modalArtist"
-      ).textContent =
-        song.artist;
+    emptyState.style.display = "none";
 
 
 
-      document.getElementById(
-        "modalDifficulty"
-      ).textContent =
+    const columns = [
+      [],
+      [],
+      []
+    ];
 
-        "★".repeat(
-          song.difficulty
-        )
 
-        +
+    filtered.forEach(
+      (song, index) => {
 
-        "☆".repeat(
-          5 - song.difficulty
+        columns[
+          index % 3
+        ].push(song);
+
+      }
+    );
+
+
+
+    columns.forEach(
+      columnSongs => {
+
+        const column =
+          document.createElement("div");
+
+
+        column.className =
+          "column";
+
+
+        const heading =
+          document.createElement("div");
+
+
+        heading.className =
+          "column-title";
+
+
+        heading.textContent =
+          "SONGBOOK";
+
+
+        column.appendChild(
+          heading
         );
 
 
 
-      document.getElementById(
-        "modalGenre"
-      ).textContent =
-        song.category;
+        columnSongs.forEach(
+          song => {
+
+            const button =
+              document.createElement("button");
+
+
+            button.className =
+              "song";
+
+
+            const info =
+              document.createElement("div");
+
+
+            info.className =
+              "song-info";
+
+
+            const title =
+              document.createElement("div");
+
+
+            title.className =
+              "song-title";
+
+
+            title.textContent =
+              song.title;
+
+
+            const artist =
+              document.createElement("div");
+
+
+            artist.className =
+              "song-artist";
+
+
+            artist.textContent =
+              song.artist;
+
+
+            info.appendChild(title);
+
+            info.appendChild(artist);
 
 
 
-      modal.classList.add(
-        "show"
-      );
+            const meta =
+              document.createElement("div");
 
 
-    }
+            meta.className =
+              "song-meta";
 
 
-
-    /* =========================
-       COPY SONG
-    ========================== */
-
-    document
-      .getElementById(
-        "copyButton"
-      )
-      .addEventListener(
-        "click",
-        async () => {
+            meta.textContent =
+              "클릭";
 
 
-          if (!currentSong)
-            return;
+            button.appendChild(info);
+
+            button.appendChild(meta);
 
 
 
-          const text =
-            `${currentSong.title} · ${currentSong.artist}`;
-
-
-
-          try {
-
-
-            await navigator.clipboard
-              .writeText(text);
-
-
-
-            showToast(
-              "✓ 복사되었습니다"
+            button.addEventListener(
+              "click",
+              () => openSong(song)
             );
 
 
-          } catch {
-
-
-            showToast(
-              "복사에 실패했습니다"
-            );
-
+            column.appendChild(button);
 
           }
+        );
 
 
-        }
+        songGrid.appendChild(column);
+
+      }
+    );
+
+  }
+
+
+
+  function openSong(song) {
+
+    currentSong = song;
+
+
+    document.getElementById(
+      "modalCategory"
+    ).textContent =
+      song.category;
+
+
+    document.getElementById(
+      "modalTitle"
+    ).textContent =
+      song.title;
+
+
+    document.getElementById(
+      "modalArtist"
+    ).textContent =
+      song.artist;
+
+
+    document.getElementById(
+      "modalDifficulty"
+    ).textContent =
+
+      "★".repeat(song.difficulty) +
+
+      "☆".repeat(
+        5 - song.difficulty
       );
 
 
+    document.getElementById(
+      "modalGenre"
+    ).textContent =
+      song.category;
 
-    /* =========================
-       CLOSE MODAL
-    ========================== */
 
-    document
-      .getElementById(
-        "closeModal"
-      )
-      .addEventListener(
-        "click",
-        () => {
+    modal.classList.add("show");
 
-          modal.classList.remove(
-            "show"
-          );
-
-        }
-      );
+  }
 
 
 
-    modal.addEventListener(
+  document
+    .getElementById("copyButton")
+    .addEventListener(
       "click",
-      event => {
+      async () => {
+
+        if (!currentSong) return;
 
 
-        if (
-          event.target === modal
-        ) {
+        const text =
+          `${currentSong.title} · ${currentSong.artist}`;
 
 
-          modal.classList.remove(
-            "show"
+        try {
+
+          await navigator.clipboard.writeText(
+            text
           );
 
 
-        }
+          showToast(
+            "✓ 복사되었습니다"
+          );
 
+        } catch {
+
+          showToast(
+            "복사에 실패했습니다"
+          );
+
+        }
 
       }
     );
 
 
 
-    document.addEventListener(
-      "keydown",
-      event => {
+  document
+    .getElementById("closeModal")
+    .addEventListener(
+      "click",
+      () => {
 
-
-        if (
-          event.key === "Escape"
-        ) {
-
-
-          modal.classList.remove(
-            "show"
-          );
-
-
-        }
-
+        modal.classList.remove("show");
 
       }
     );
 
 
 
-    /* =========================
-       TOAST
-    ========================== */
+  modal.addEventListener(
+    "click",
+    event => {
 
-    function showToast(
-      message
-    ) {
+      if (event.target === modal) {
 
+        modal.classList.remove("show");
 
-      toast.textContent =
-        message;
-
-
-      toast.classList.add(
-        "show"
-      );
-
-
-      setTimeout(
-        () => {
-
-          toast.classList.remove(
-            "show"
-          );
-
-        },
-        1600
-      );
-
+      }
 
     }
+  );
 
 
 
-    /* =========================
-       SEARCH
-    ========================== */
+  document.addEventListener(
+    "keydown",
+    event => {
 
-    searchInput.addEventListener(
-      "input",
-      renderSongs
+      if (event.key === "Escape") {
+
+        modal.classList.remove("show");
+
+      }
+
+    }
+  );
+
+
+
+  function showToast(message) {
+
+    toast.textContent =
+      message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(
+      () => {
+
+        toast.classList.remove("show");
+
+      },
+      1600
     );
 
-
-
-    /* =========================
-       GENRE FILTER
-    ========================== */
-
-    document
-      .querySelectorAll(
-        ".filter"
-      )
-      .forEach(
-        button => {
-
-
-          button.addEventListener(
-            "click",
-            () => {
-
-
-              document
-                .querySelectorAll(
-                  ".filter"
-                )
-                .forEach(
-                  b =>
-                    b.classList.remove(
-                      "active"
-                    )
-                );
+  }
 
 
 
-              button.classList.add(
-                "active"
+  searchInput.addEventListener(
+    "input",
+    renderSongs
+  );
+
+
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(".filter")
+              .forEach(
+                b =>
+                  b.classList.remove("active")
               );
 
 
-
-              selectedCategory =
-                button.dataset.category;
+            button.classList.add("active");
 
 
-
-              renderSongs();
-
-
-            }
-          );
+            selectedCategory =
+              button.dataset.category;
 
 
-        }
-      );
+            renderSongs();
 
+          }
+        );
 
-
-    /* =========================
-       RANDOM
-    ========================== */
-
-    document
-      .getElementById(
-        "randomButton"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-
-          if (
-            songs.length === 0
-          )
-            return;
+      }
+    );
 
 
 
-          const randomSong =
-            songs[
-              Math.floor(
-                Math.random() *
-                songs.length
-              )
-            ];
+  document
+    .getElementById("randomButton")
+    .addEventListener(
+      "click",
+      () => {
+
+        if (songs.length === 0) return;
+
+
+        const randomSong =
+          songs[
+            Math.floor(
+              Math.random() *
+              songs.length
+            )
+          ];
+
+
+        openSong(randomSong);
+
+      }
+    );
 
 
 
-          openSong(
-            randomSong
-          );
-
-
-        }
-      );
+  sortSelect.addEventListener(
+    "change",
+    renderSongs
+  );
 
 
 
-    /* =========================
-       SORT
-    ========================== */
+  document
+    .getElementById("themeButton")
+    .addEventListener(
+      "click",
+      () => {
 
-    document
-      .getElementById(
-        "sortButton"
-      )
-      .addEventListener(
-        "click",
-        event => {
+        document.body.classList.toggle(
+          "light"
+        );
 
 
-          alphabetical =
-            !alphabetical;
-
-
-
-          event.target.textContent =
-            alphabetical
-              ? "원래순"
-              : "가나다순";
-
-
-
-          renderSongs();
-
-
-        }
-      );
-
-
-
-    /* =========================
-       THEME
-    ========================== */
-
-    document
-      .getElementById(
-        "themeButton"
-      )
-      .addEventListener(
-        "click",
-        () => {
-
-
-          document.body.classList.toggle(
+        const light =
+          document.body.classList.contains(
             "light"
           );
 
 
+        document.getElementById(
+          "themeButton"
+        ).textContent =
+          light ? "☀" : "☾";
 
-          const light =
-            document.body.classList.contains(
-              "light"
-            );
-
-
-
-          document.getElementById(
-            "themeButton"
-          ).textContent =
-            light
-              ? "☀"
-              : "☾";
-
-
-        }
-      );
+      }
+    );
 
 
 
-    /* =========================
-       INITIAL LOAD
-    ========================== */
+  renderSongs();
 
-    renderSongs();
-
-
-  </script>
-
-</body>
-</html>
+</script>
