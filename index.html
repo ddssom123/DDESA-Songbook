@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뜨사 노래책</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🎵 뜨사 노래책</h2>
+                <div class="header-actions">
+                    <input type="text" id="search-input" placeholder="곡 제목, 아티스트, 장르 검색...">
+                    <button id="theme-toggle" class="theme-btn">☀️ 라이트</button>
+                </div>
+            </div>
+            <ul id="song-list" class="song-list">
+                <!-- 자바스크립트로 동적 생성됨 -->
+            </ul>
+            <footer class="sidebar-footer">
+                <p>DDESA</p>
+            </footer>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="song-viewer">
+            <div id="welcome-view" class="welcome-view">
+                <h1>뜨사 노래책</h1>
+                <p>곡 제목·아티스트 이름·초성으로 원하는 곡을 검색할 수 있습니다.</p>
+                </p>장르·난이도·필터와 정렬을 함께 사용할 수 있습니다.</p>
+            </div>
+            
+            <div id="song-content-view" class="song-content-view hidden">
+                <div class="song-header">
+                    <h1 id="display-title">곡 제목</h1>
+                    <h3 id="display-artist">아티스트 이름</h3>
+                    <div class="song-meta">
+                        <span class="badge" id="display-genre">R&B</span>
+                    </div>
+                </div>
+                <hr>
+                <pre id="display-lyrics" class="lyrics-body">
+                    <!-- 가사가 여기에 표시됩니다 -->
+                </pre>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
