@@ -5,18 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>뜨사 노래책</title>
+  <title>DDESA Songbook</title>
 
   <style>
+
     :root {
       --navy: #091540;
       --blue: #ABD2FA;
-      --blue-soft: rgba(171, 210, 250, 0.12);
+      --blue-soft: rgba(171, 210, 250, 0.10);
+      --blue-hover: rgba(171, 210, 250, 0.18);
       --white: #ffffff;
-      --muted: rgba(255, 255, 255, 0.65);
-      --border: rgba(171, 210, 250, 0.22);
+      --muted: rgba(255, 255, 255, 0.62);
+      --border: rgba(171, 210, 250, 0.20);
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     }
+
 
     * {
       box-sizing: border-box;
@@ -24,9 +27,11 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
+
 
     body {
       font-family:
@@ -38,19 +43,33 @@
 
       background: var(--navy);
       color: var(--white);
+
       min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
     }
+
+
+    main {
+      flex: 1;
+    }
+
 
     button,
     input {
       font: inherit;
     }
 
+
     button {
       cursor: pointer;
     }
 
-    /* HEADER */
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       position: sticky;
@@ -58,341 +77,522 @@
       z-index: 50;
 
       backdrop-filter: blur(18px);
-      background: rgba(9, 21, 64, 0.88);
 
-      border-bottom: 1px solid var(--border);
+      background:
+        rgba(9, 21, 64, 0.88);
+
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .header-inner {
       max-width: 1250px;
-      margin: auto;
 
       min-height: 74px;
-      padding: 0 24px;
+
+      margin: auto;
+
+      padding:
+        0 24px;
 
       display: flex;
+
       align-items: center;
       justify-content: space-between;
     }
 
+
     .logo {
       color: var(--blue);
-      font-weight: 800;
-      letter-spacing: 2px;
+
       font-size: 21px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
     }
+
 
     .logo span {
       display: block;
-      font-size: 10px;
-      letter-spacing: 3px;
-      opacity: 0.6;
+
       margin-top: 2px;
+
+      color: var(--white);
+
+      font-size: 10px;
+
+      font-weight: 500;
+
+      letter-spacing: 3px;
+
+      opacity: 0.55;
     }
 
-    .icon-button {
+
+    .theme-button {
       width: 38px;
       height: 38px;
 
-      border: 1px solid var(--border);
-      background: var(--blue-soft);
-      color: var(--white);
+      border:
+        1px solid var(--border);
 
       border-radius: 50%;
+
+      background:
+        var(--blue-soft);
+
+      color: var(--white);
     }
 
-    /* HERO */
+
+    .theme-button:hover {
+      background:
+        var(--blue-hover);
+    }
+
+
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       max-width: 1250px;
+
       margin: auto;
-      padding: 80px 24px 55px;
+
+      padding:
+        80px 24px 55px;
     }
+
 
     .eyebrow {
-      color: var(--blue);
-      font-size: 12px;
-      letter-spacing: 3px;
       margin-bottom: 15px;
+
+      color: var(--blue);
+
+      font-size: 12px;
+
       font-weight: 700;
+
+      letter-spacing: 3px;
     }
 
+
     .hero h1 {
-      font-size: clamp(42px, 7vw, 82px);
+      font-size:
+        clamp(45px, 7vw, 82px);
+
       line-height: 0.95;
+
       letter-spacing: -4px;
     }
+
 
     .hero h1 span {
       color: var(--blue);
     }
 
+
     .hero-description {
-      margin-top: 20px;
-      color: var(--muted);
-      line-height: 1.7;
       max-width: 620px;
+
+      margin-top: 20px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.7;
     }
 
-    /* CONTROLS */
+
+
+    /* =========================
+       SEARCH
+    ========================= */
 
     .controls {
       max-width: 1250px;
+
       margin: auto;
-      padding: 0 24px 30px;
+
+      padding:
+        0 24px 30px;
     }
+
 
     .search-row {
       display: grid;
-      grid-template-columns: 1fr auto auto;
+
+      grid-template-columns:
+        1fr auto auto;
+
       gap: 10px;
     }
+
 
     .search-box {
       position: relative;
     }
 
-    .search-box input {
-      width: 100%;
-      height: 52px;
-
-      border: 1px solid var(--border);
-      border-radius: 12px;
-
-      background: var(--blue-soft);
-      color: var(--white);
-
-      padding: 0 18px 0 45px;
-      outline: none;
-    }
-
-    .search-box input::placeholder {
-      color: rgba(255, 255, 255, 0.42);
-    }
-
-    .search-box input:focus {
-      border-color: var(--blue);
-    }
 
     .search-icon {
       position: absolute;
+
       left: 16px;
       top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.6;
+
+      transform:
+        translateY(-50%);
+
+      color: var(--muted);
+
+      font-size: 20px;
     }
+
+
+    .search-box input {
+      width: 100%;
+
+      height: 52px;
+
+      padding:
+        0 18px 0 45px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      outline: none;
+
+      background:
+        var(--blue-soft);
+
+      color: var(--white);
+    }
+
+
+    .search-box input::placeholder {
+      color:
+        rgba(255, 255, 255, 0.40);
+    }
+
+
+    .search-box input:focus {
+      border-color:
+        var(--blue);
+    }
+
 
     .control-button {
       min-height: 52px;
 
-      padding: 0 17px;
+      padding:
+        0 17px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 12px;
 
-      background: var(--blue-soft);
+      background:
+        var(--blue-soft);
+
       color: var(--white);
     }
 
-    /* FILTERS */
+
+    .control-button:hover {
+      background:
+        var(--blue-hover);
+    }
+
+
+
+    /* =========================
+       GENRE FILTERS
+    ========================= */
 
     .filters {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
 
-      padding: 3px 0 5px;
+      gap: 8px;
+
       margin-top: 15px;
+
+      overflow-x: auto;
 
       scrollbar-width: none;
     }
+
 
     .filters::-webkit-scrollbar {
       display: none;
     }
 
+
     .filter {
       flex: 0 0 auto;
 
-      padding: 9px 15px;
+      padding:
+        9px 15px;
+
+      border:
+        1px solid var(--border);
 
       border-radius: 999px;
-      border: 1px solid var(--border);
 
       background: transparent;
+
       color: var(--muted);
     }
 
-    .filter.active,
-    .filter:hover {
-      color: var(--navy);
-      background: var(--blue);
-      border-color: var(--blue);
+
+    .filter:hover,
+    .filter.active {
+      border-color:
+        var(--blue);
+
+      background:
+        var(--blue);
+
+      color:
+        var(--navy);
     }
 
-    /* SONGBOOK */
+
+
+    /* =========================
+       SONGBOOK
+    ========================= */
 
     .songbook {
       max-width: 1250px;
+
       margin: auto;
-      padding: 0 24px 100px;
+
+      padding:
+        0 24px 90px;
     }
 
-    .songbook-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
+    .songbook-top {
       margin-bottom: 15px;
     }
 
+
     .result-count {
       color: var(--muted);
+
       font-size: 13px;
     }
 
+
     .song-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
 
-      border: 1px solid var(--border);
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      border:
+        1px solid var(--border);
+
       border-radius: 16px;
+
       overflow: hidden;
 
       box-shadow: var(--shadow);
     }
 
+
     .column {
       min-width: 0;
-      border-right: 1px solid var(--border);
+
+      border-right:
+        1px solid var(--border);
     }
+
 
     .column:last-child {
       border-right: none;
     }
 
+
     .column-title {
-      padding: 16px 18px;
+      padding:
+        16px 18px;
 
-      background: var(--blue-soft);
+      border-bottom:
+        1px solid var(--border);
 
-      color: var(--blue);
+      background:
+        var(--blue-soft);
+
+      color:
+        var(--blue);
 
       font-size: 13px;
+
       font-weight: 700;
 
-      border-bottom: 1px solid var(--border);
+      letter-spacing: 1px;
     }
+
 
     .song {
       width: 100%;
 
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       gap: 12px;
 
-      padding: 16px 18px;
-
-      text-align: left;
+      padding:
+        16px 18px;
 
       border: none;
-      border-bottom: 1px solid rgba(171, 210, 250, 0.1);
+
+      border-bottom:
+        1px solid
+        rgba(171, 210, 250, 0.09);
 
       background: transparent;
+
       color: var(--white);
+
+      text-align: left;
 
       transition: 0.15s ease;
     }
 
+
     .song:hover {
-      background: var(--blue-soft);
       padding-left: 23px;
+
+      background:
+        var(--blue-soft);
     }
+
 
     .song-info {
       min-width: 0;
     }
 
+
     .song-title {
+      overflow: hidden;
+
+      color: var(--white);
+
+      font-size: 14px;
+
       font-weight: 650;
 
       white-space: nowrap;
-      overflow: hidden;
+
       text-overflow: ellipsis;
     }
+
 
     .song-artist {
       margin-top: 5px;
 
+      overflow: hidden;
+
       color: var(--muted);
+
       font-size: 12px;
 
       white-space: nowrap;
-      overflow: hidden;
+
       text-overflow: ellipsis;
     }
+
 
     .song-meta {
       flex: 0 0 auto;
 
       color: var(--blue);
+
       font-size: 11px;
     }
 
-    /* EMPTY */
+
+
+    /* =========================
+       EMPTY
+    ========================= */
 
     .empty {
       display: none;
 
-      padding: 70px 20px;
-
-      text-align: center;
+      padding:
+        70px 20px;
 
       color: var(--muted);
-    }
 
-        footer {
-      padding: 40px;
       text-align: center;
-      opacity: 0.6;
-      font-size: 15px;
     }
 
-    /* MODAL */
+
+
+    /* =========================
+       SONG MODAL
+    ========================= */
 
     .modal {
       position: fixed;
+
       inset: 0;
+
       z-index: 100;
 
       display: none;
+
       align-items: center;
+
       justify-content: center;
 
       padding: 20px;
 
-      background: rgba(0, 0, 0, 0.65);
+      background:
+        rgba(0, 0, 0, 0.65);
 
       backdrop-filter: blur(8px);
     }
+
 
     .modal.show {
       display: flex;
     }
 
+
     .modal-card {
-      width: min(520px, 100%);
-
-      background: var(--navy);
-
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      width:
+        min(520px, 100%);
 
       padding: 28px;
 
-      box-shadow: var(--shadow);
+      border:
+        1px solid var(--border);
+
+      border-radius: 20px;
+
+      background:
+        var(--navy);
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .modal-close {
       float: right;
@@ -400,66 +600,87 @@
       width: 34px;
       height: 34px;
 
+      border:
+        1px solid var(--border);
+
       border-radius: 50%;
 
-      border: 1px solid var(--border);
-
       background: transparent;
+
       color: var(--white);
+
+      font-size: 20px;
     }
 
+
     .modal-category {
+      margin-bottom: 12px;
+
       color: var(--blue);
 
       font-size: 11px;
-      letter-spacing: 2px;
 
-      margin-bottom: 12px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
     }
+
 
     .modal-title {
+      margin-bottom: 5px;
+
       font-size: 30px;
 
-      margin-bottom: 5px;
+      letter-spacing: -1px;
     }
+
 
     .modal-artist {
-      color: var(--muted);
-
       margin-bottom: 25px;
+
+      color: var(--muted);
     }
+
 
     .details {
       display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
 
       gap: 10px;
     }
 
+
     .detail {
-      padding: 14px;
+      padding: 15px;
+
+      border:
+        1px solid
+        rgba(171, 210, 250, 0.10);
 
       border-radius: 12px;
 
-      background: var(--blue-soft);
-
-      border: 1px solid rgba(171, 210, 250, 0.1);
+      background:
+        var(--blue-soft);
     }
 
+
     .detail-label {
-      font-size: 10px;
+      margin-bottom: 6px;
 
       color: var(--muted);
 
-      margin-bottom: 5px;
+      font-size: 10px;
     }
+
 
     .detail-value {
       color: var(--blue);
 
       font-weight: 700;
     }
+
 
     .copy-button {
       width: 100%;
@@ -469,15 +690,28 @@
       padding: 14px;
 
       border: none;
+
       border-radius: 12px;
 
-      background: var(--blue);
-      color: var(--navy);
+      background:
+        var(--blue);
+
+      color:
+        var(--navy);
 
       font-weight: 800;
     }
 
-    /* TOAST */
+
+    .copy-button:hover {
+      opacity: 0.9;
+    }
+
+
+
+    /* =========================
+       TOAST
+    ========================= */
 
     .toast {
       position: fixed;
@@ -487,46 +721,98 @@
 
       z-index: 200;
 
-      transform: translate(-50%, 30px);
-
-      background: var(--blue);
-      color: var(--navy);
-
-      padding: 11px 18px;
+      padding:
+        11px 18px;
 
       border-radius: 999px;
 
+      background:
+        var(--blue);
+
+      color:
+        var(--navy);
+
       font-size: 13px;
+
       font-weight: 700;
 
       opacity: 0;
 
       pointer-events: none;
 
+      transform:
+        translate(-50%, 30px);
+
       transition: 0.25s ease;
     }
+
 
     .toast.show {
       opacity: 1;
 
-      transform: translate(-50%, 0);
+      transform:
+        translate(-50%, 0);
     }
 
-    /* LIGHT MODE */
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding:
+        28px 20px;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--muted);
+
+      font-size: 11px;
+
+      text-align: center;
+
+      background:
+        rgba(0, 0, 0, 0.10);
+    }
+
+
+
+    /* =========================
+       LIGHT MODE
+    ========================= */
 
     body.light {
       --navy: #ffffff;
+
       --white: #091540;
-      --muted: rgba(9, 21, 64, 0.6);
-      --blue-soft: rgba(9, 21, 64, 0.05);
-      --border: rgba(9, 21, 64, 0.14);
+
+      --muted:
+        rgba(9, 21, 64, 0.60);
+
+      --blue-soft:
+        rgba(9, 21, 64, 0.05);
+
+      --blue-hover:
+        rgba(9, 21, 64, 0.09);
+
+      --border:
+        rgba(9, 21, 64, 0.14);
     }
+
 
     body.light header {
-      background: rgba(255, 255, 255, 0.88);
+      background:
+        rgba(255, 255, 255, 0.88);
     }
 
-    /* MOBILE */
+
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 850px) {
 
@@ -534,24 +820,33 @@
         grid-template-columns: 1fr;
       }
 
+
       .column {
         border-right: none;
-        border-bottom: 1px solid var(--border);
+
+        border-bottom:
+          1px solid var(--border);
       }
+
 
       .column:last-child {
         border-bottom: none;
       }
 
+
       .search-row {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr 1fr;
       }
 
+
       .search-box {
-        grid-column: 1 / -1;
+        grid-column:
+          1 / -1;
       }
 
     }
+
 
     @media (max-width: 560px) {
 
@@ -559,28 +854,37 @@
         padding-top: 55px;
       }
 
+
       .hero h1 {
         letter-spacing: -2px;
       }
 
+
       .header-inner {
-        padding: 0 16px;
+        padding:
+          0 16px;
       }
+
 
       .hero,
       .controls,
       .songbook {
         padding-left: 16px;
+
         padding-right: 16px;
       }
 
+
       .search-row {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
+
 
       .search-box {
         grid-column: auto;
       }
+
 
       .control-button {
         width: 100%;
@@ -589,66 +893,96 @@
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =========================
+       HEADER
+  ========================== -->
 
   <header>
 
     <div class="header-inner">
 
+
       <div class="logo">
+
         DDESA
-        <span>SONGBOOK</span>
+
+        <span>
+          SONGBOOK
+        </span>
+
       </div>
 
+
       <button
-        class="icon-button"
+        class="theme-button"
         id="themeButton"
         aria-label="테마 변경">
+
         ☾
+
       </button>
+
 
     </div>
 
   </header>
 
 
-  <!-- HERO -->
 
   <main>
 
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
     <section class="hero">
 
+
       <div class="eyebrow">
-        뜨사 DDESA 
+        DDESA PROFILE
       </div>
+
 
       <h1>
         SONG<span>BOOK</span>
       </h1>
 
+
       <p class="hero-description">
-        노래를 찾아보고 클릭 한 번으로 곡 정보를 복사해보세요.
+        노래를 찾아보고 클릭 한 번으로
+        곡 정보를 복사해보세요.
       </p>
+
 
     </section>
 
 
-    <!-- SEARCH / FILTER -->
+
+    <!-- =========================
+         SEARCH
+    ========================== -->
 
     <section class="controls">
 
+
       <div class="search-row">
 
+
         <div class="search-box">
+
 
           <span class="search-icon">
             ⌕
           </span>
+
 
           <input
             id="searchInput"
@@ -656,87 +990,119 @@
             placeholder="곡명, 가수, 장르로 검색..."
             autocomplete="off">
 
+
         </div>
 
 
         <button
           class="control-button"
           id="randomButton">
+
           🎲 랜덤
+
         </button>
 
 
         <button
           class="control-button"
           id="sortButton">
+
           가나다순
+
         </button>
+
 
       </div>
 
 
+
+      <!-- GENRE FILTERS -->
+
       <div class="filters">
+
 
         <button
           class="filter active"
           data-category="전체">
+
           전체
+
         </button>
 
-            <button
+
+        <button
           class="filter"
           data-category="R&B">
+
           R&B
+
         </button>
+
 
         <button
           class="filter"
           data-category="힙합 / 랩">
-          합합 / 랩
+
+          힙합 / 랩
+
         </button>
+
 
         <button
           class="filter"
           data-category="POP">
+
           POP
+
         </button>
 
-          <button
-          class="filter"
-          data-category="K-POP">
-          K-POP
-        </button>
 
-          <button
-          class="filter"
-          data-category="J-POP">
-          J-POP
-        </button>
-        
         <button
           class="filter"
-          data-category="기타">
-          기타
+          data-category="K-POP">
+
+          K-POP
+
         </button>
 
+
+        <button
+          class="filter"
+          data-category="J-POP">
+
+          J-POP
+
+        </button>
+
+
       </div>
+
 
     </section>
 
 
-    <!-- SONGBOOK -->
+
+    <!-- =========================
+         SONGBOOK
+    ========================== -->
 
     <section class="songbook">
 
+
       <div class="songbook-top">
+
 
         <div
           class="result-count"
           id="resultCount">
+
           총 12곡
+
         </div>
 
+
       </div>
+
 
 
       <div
@@ -745,237 +1111,347 @@
       </div>
 
 
+
       <div
         class="empty"
         id="emptyState">
+
         검색 결과가 없습니다.
+
       </div>
 
+
     </section>
+
 
   </main>
 
 
-  <!-- SONG DETAILS -->
+
+  <!-- =========================
+       SONG DETAILS
+  ========================== -->
 
   <div
     class="modal"
     id="songModal">
 
+
     <div class="modal-card">
+
 
       <button
         class="modal-close"
         id="closeModal">
+
         ×
+
       </button>
 
 
       <div
         class="modal-category"
         id="modalCategory">
-        CATEGORY
+
+        GENRE
+
       </div>
 
 
       <h2
         class="modal-title"
         id="modalTitle">
+
         곡명
+
       </h2>
 
 
       <p
         class="modal-artist"
         id="modalArtist">
+
         가수
+
       </p>
+
 
 
       <div class="details">
 
+
         <div class="detail">
+
 
           <div class="detail-label">
             난이도
           </div>
 
+
           <div
             class="detail-value"
             id="modalDifficulty">
-            ★★★★☆
+
+            ★★★☆☆
+
           </div>
+
 
         </div>
 
 
+
         <div class="detail">
+
 
           <div class="detail-label">
             장르
           </div>
 
+
           <div
             class="detail-value"
             id="modalGenre">
+
             R&B
+
           </div>
+
 
         </div>
 
+
       </div>
+
 
 
       <button
         class="copy-button"
         id="copyButton">
+
         📋 곡명 · 가수 복사
+
       </button>
 
+
     </div>
+
 
   </div>
 
 
-  <!-- COPY MESSAGE -->
+
+  <!-- =========================
+       TOAST
+  ========================== -->
 
   <div
     class="toast"
     id="toast">
+
     ✓ 복사되었습니다
+
   </div>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    © 2026 DDESA PROFILE · 팬 제작 비공식 홈페이지
+
+  </footer>
+
 
 
   <script>
 
+
     /*
-    ==========================================
+    ==================================================
     SONG DATA
 
-    나중에 여기를 관리자 / Supabase와 연결할 예정.
-    ==========================================
+    ✏️ 이 부분만 나중에 편집하면 됩니다.
+
+    category에는 반드시 아래 중 하나를 사용하세요:
+
+    "R&B"
+    "힙합 / 랩"
+    "POP"
+    "K-POP"
+    "J-POP"
+
+    difficulty는 1~5입니다.
+
+    ==================================================
     */
+
 
     const songs = [
 
+
       {
-        title: "Crush On You",
-        artist: "크러쉬",
+        title: "밤양갱",
+        artist: "비비",
         category: "R&B",
-        difficulty: 4 속련도
+        difficulty: 3
       },
 
-      {
-        title: "가끔",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
-      },
 
       {
-        title: "미안해 미워해 사랑해",
-        artist: "크러쉬",
-        category: "K-POP"
-        difficulty: 4 속련도
-      },
-
-      {
-        title: "Beautiful",
-        artist: "크러쉬",
+        title: "Love wins all",
+        artist: "아이유",
         category: "K-POP",
-        difficulty: 4 속련도
+        difficulty: 4
       },
 
-      {
-        title: "잊어버리지마",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
-      },
 
       {
-        title: "Rush Hour",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
+        title: "Magnetic",
+        artist: "아일릿",
+        category: "K-POP",
+        difficulty: 3
       },
 
-      {
-        title: "미워",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
-      },
 
       {
-        title: "Monday Blues",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
+        title: "Supernova",
+        artist: "aespa",
+        category: "K-POP",
+        difficulty: 4
       },
 
-      {
-        title: "어떻게지내",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
-      },
 
       {
-        title: "나빠",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
+        title: "Ditto",
+        artist: "NewJeans",
+        category: "K-POP",
+        difficulty: 2
       },
 
-      {
-        title: "Whatever You Do",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
-      },
 
       {
-        title: "티격태격",
-        artist: "크러쉬",
-        category: "R&B",
-        difficulty: 4 속련도
+        title: "한 페이지가 될 수 있게",
+        artist: "DAY6",
+        category: "K-POP",
+        difficulty: 4
+      },
+
+
+      {
+        title: "예뻤어",
+        artist: "DAY6",
+        category: "K-POP",
+        difficulty: 3
+      },
+
+
+      {
+        title: "사건의 지평선",
+        artist: "윤하",
+        category: "K-POP",
+        difficulty: 5
+      },
+
+
+      {
+        title: "퀸카",
+        artist: "(여자)아이들",
+        category: "K-POP",
+        difficulty: 3
+      },
+
+
+      {
+        title: "Hype Boy",
+        artist: "NewJeans",
+        category: "K-POP",
+        difficulty: 2
+      },
+
+
+      {
+        title: "Attention",
+        artist: "NewJeans",
+        category: "K-POP",
+        difficulty: 2
+      },
+
+
+      {
+        title: "I AM",
+        artist: "IVE",
+        category: "K-POP",
+        difficulty: 4
       }
+
 
     ];
 
 
+
+    /* =========================
+       VARIABLES
+    ========================== */
+
     let selectedCategory = "전체";
+
     let currentSong = null;
+
     let alphabetical = false;
 
 
+
+    /* =========================
+       ELEMENTS
+    ========================== */
+
     const songGrid =
-      document.getElementById("songGrid");
+      document.getElementById(
+        "songGrid"
+      );
+
 
     const searchInput =
-      document.getElementById("searchInput");
+      document.getElementById(
+        "searchInput"
+      );
+
 
     const resultCount =
-      document.getElementById("resultCount");
+      document.getElementById(
+        "resultCount"
+      );
+
 
     const emptyState =
-      document.getElementById("emptyState");
+      document.getElementById(
+        "emptyState"
+      );
+
 
     const modal =
-      document.getElementById("songModal");
+      document.getElementById(
+        "songModal"
+      );
+
 
     const toast =
-      document.getElementById("toast");
+      document.getElementById(
+        "toast"
+      );
 
 
-    /*
-    ==========================================
-    RENDER SONGS
-    ==========================================
-    */
+
+    /* =========================
+       RENDER SONGS
+    ========================== */
 
     function renderSongs() {
+
 
       const search =
         searchInput.value
@@ -983,12 +1459,16 @@
           .toLowerCase();
 
 
+
       let filtered =
         songs.filter(song => {
 
+
           const matchesCategory =
             selectedCategory === "전체" ||
-            song.category === selectedCategory;
+            song.category ===
+              selectedCategory;
+
 
 
           const searchable =
@@ -1001,8 +1481,12 @@
             ).toLowerCase();
 
 
+
           const matchesSearch =
-            searchable.includes(search);
+            searchable.includes(
+              search
+            );
+
 
 
           return (
@@ -1010,45 +1494,64 @@
             matchesSearch
           );
 
+
         });
+
 
 
       if (alphabetical) {
 
-        filtered.sort((a, b) =>
-          a.title.localeCompare(
-            b.title,
-            "ko"
-          )
+
+        filtered.sort(
+          (a, b) =>
+            a.title.localeCompare(
+              b.title,
+              "ko"
+            )
         );
 
+
       }
+
 
 
       resultCount.textContent =
         `총 ${filtered.length}곡`;
 
 
+
       songGrid.innerHTML = "";
 
 
-      if (filtered.length === 0) {
 
-        songGrid.style.display = "none";
-        emptyState.style.display = "block";
+      if (
+        filtered.length === 0
+      ) {
+
+
+        songGrid.style.display =
+          "none";
+
+
+        emptyState.style.display =
+          "block";
+
 
         return;
+
 
       }
 
 
-      songGrid.style.display = "grid";
-      emptyState.style.display = "none";
+
+      songGrid.style.display =
+        "grid";
 
 
-      /*
-      Divide songs into 3 columns.
-      */
+      emptyState.style.display =
+        "none";
+
+
 
       const columns = [
         [],
@@ -1057,32 +1560,49 @@
       ];
 
 
-      filtered.forEach((song, index) => {
 
-        columns[index % 3].push(song);
+      filtered.forEach(
+        (song, index) => {
 
-      });
+          columns[
+            index % 3
+          ].push(song);
+
+        }
+      );
+
 
 
       columns.forEach(
         (columnSongs, columnIndex) => {
 
+
           const column =
-            document.createElement("div");
+            document.createElement(
+              "div"
+            );
+
 
           column.className =
             "column";
 
 
+
           const heading =
-            document.createElement("div");
+            document.createElement(
+              "div"
+            );
+
 
           heading.className =
             "column-title";
 
 
           heading.textContent =
-            ["A", "B", "C"][columnIndex];
+            ["A", "B", "C"][
+              columnIndex
+            ];
+
 
 
           column.appendChild(
@@ -1090,96 +1610,140 @@
           );
 
 
-          columnSongs.forEach(song => {
 
-            const button =
-              document.createElement("button");
-
-            button.className =
-              "song";
+          columnSongs.forEach(
+            song => {
 
 
-            const info =
-              document.createElement("div");
-
-            info.className =
-              "song-info";
-
-
-            const title =
-              document.createElement("div");
-
-            title.className =
-              "song-title";
-
-            title.textContent =
-              song.title;
+              const button =
+                document.createElement(
+                  "button"
+                );
 
 
-            const artist =
-              document.createElement("div");
-
-            artist.className =
-              "song-artist";
-
-            artist.textContent =
-              song.artist;
+              button.className =
+                "song";
 
 
-            info.appendChild(title);
-            info.appendChild(artist);
+
+              const info =
+                document.createElement(
+                  "div"
+                );
 
 
-            const meta =
-              document.createElement("div");
-
-            meta.className =
-              "song-meta";
-
-            meta.textContent =
-              "클릭";
+              info.className =
+                "song-info";
 
 
-            button.appendChild(info);
-            button.appendChild(meta);
+
+              const title =
+                document.createElement(
+                  "div"
+                );
 
 
-            /*
-            Click song → details.
-            */
-
-            button.addEventListener(
-              "click",
-              () => openSong(song)
-            );
+              title.className =
+                "song-title";
 
 
-            column.appendChild(
-              button
-            );
+              title.textContent =
+                song.title;
 
-          });
+
+
+              const artist =
+                document.createElement(
+                  "div"
+                );
+
+
+              artist.className =
+                "song-artist";
+
+
+              artist.textContent =
+                song.artist;
+
+
+
+              info.appendChild(
+                title
+              );
+
+
+              info.appendChild(
+                artist
+              );
+
+
+
+              const meta =
+                document.createElement(
+                  "div"
+                );
+
+
+              meta.className =
+                "song-meta";
+
+
+              meta.textContent =
+                "클릭";
+
+
+
+              button.appendChild(
+                info
+              );
+
+
+              button.appendChild(
+                meta
+              );
+
+
+
+              button.addEventListener(
+                "click",
+                () =>
+                  openSong(song)
+              );
+
+
+
+              column.appendChild(
+                button
+              );
+
+
+            }
+          );
+
 
 
           songGrid.appendChild(
             column
           );
 
+
         }
       );
+
 
     }
 
 
-    /*
-    ==========================================
-    OPEN SONG
-    ==========================================
-    */
+
+    /* =========================
+       OPEN SONG
+    ========================== */
 
     function openSong(song) {
 
+
       currentSong = song;
+
 
 
       document.getElementById(
@@ -1188,10 +1752,12 @@
         song.category.toUpperCase();
 
 
+
       document.getElementById(
         "modalTitle"
       ).textContent =
         song.title;
+
 
 
       document.getElementById(
@@ -1200,15 +1766,21 @@
         song.artist;
 
 
+
       document.getElementById(
         "modalDifficulty"
       ).textContent =
+
         "★".repeat(
           song.difficulty
-        ) +
+        )
+
+        +
+
         "☆".repeat(
           5 - song.difficulty
         );
+
 
 
       document.getElementById(
@@ -1217,64 +1789,76 @@
         song.category;
 
 
+
       modal.classList.add(
         "show"
       );
 
+
     }
 
 
-    /*
-    ==========================================
-    COPY SONG
-    ==========================================
-    */
+
+    /* =========================
+       COPY SONG
+    ========================== */
 
     document
-      .getElementById("copyButton")
+      .getElementById(
+        "copyButton"
+      )
       .addEventListener(
         "click",
         async () => {
 
+
           if (!currentSong)
             return;
+
 
 
           const text =
             `${currentSong.title} · ${currentSong.artist}`;
 
 
+
           try {
 
-            await navigator.clipboard.writeText(
-              text
-            );
+
+            await navigator.clipboard
+              .writeText(text);
+
 
 
             showToast(
               "✓ 복사되었습니다"
             );
 
+
           } catch {
+
 
             showToast(
               "복사에 실패했습니다"
             );
 
+
           }
+
 
         }
       );
 
 
-    /*
-    ==========================================
-    CLOSE MODAL
-    ==========================================
-    */
+
+    /* =========================
+       CLOSE MODAL
+    ========================== */
 
     document
-      .getElementById("closeModal")
+      .getElementById(
+        "closeModal"
+      )
       .addEventListener(
         "click",
         () => {
@@ -1287,29 +1871,90 @@
       );
 
 
+
     modal.addEventListener(
       "click",
       event => {
+
 
         if (
           event.target === modal
         ) {
 
+
           modal.classList.remove(
             "show"
           );
 
+
         }
+
 
       }
     );
 
 
-    /*
-    ==========================================
-    SEARCH
-    ==========================================
-    */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+
+        if (
+          event.key === "Escape"
+        ) {
+
+
+          modal.classList.remove(
+            "show"
+          );
+
+
+        }
+
+
+      }
+    );
+
+
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    function showToast(
+      message
+    ) {
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        () => {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        1600
+      );
+
+
+    }
+
+
+
+    /* =========================
+       SEARCH
+    ========================== */
 
     searchInput.addEventListener(
       "input",
@@ -1317,58 +1962,79 @@
     );
 
 
-    /*
-    ==========================================
-    FILTER
-    ==========================================
-    */
+
+    /* =========================
+       GENRE FILTER
+    ========================== */
 
     document
-      .querySelectorAll(".filter")
-      .forEach(button => {
+      .querySelectorAll(
+        ".filter"
+      )
+      .forEach(
+        button => {
 
-        button.addEventListener(
-          "click",
-          () => {
 
-            document
-              .querySelectorAll(".filter")
-              .forEach(
-                b =>
-                  b.classList.remove(
-                    "active"
-                  )
+          button.addEventListener(
+            "click",
+            () => {
+
+
+              document
+                .querySelectorAll(
+                  ".filter"
+                )
+                .forEach(
+                  b =>
+                    b.classList.remove(
+                      "active"
+                    )
+                );
+
+
+
+              button.classList.add(
+                "active"
               );
 
 
-            button.classList.add(
-              "active"
-            );
+
+              selectedCategory =
+                button.dataset.category;
 
 
-            selectedCategory =
-              button.dataset.category;
+
+              renderSongs();
 
 
-            renderSongs();
-
-          }
-        );
-
-      });
+            }
+          );
 
 
-    /*
-    ==========================================
-    RANDOM SONG
-    ==========================================
-    */
+        }
+      );
+
+
+
+    /* =========================
+       RANDOM
+    ========================== */
 
     document
-      .getElementById("randomButton")
+      .getElementById(
+        "randomButton"
+      )
       .addEventListener(
         "click",
         () => {
+
+
+          if (
+            songs.length === 0
+          )
+            return;
+
+
 
           const randomSong =
             songs[
@@ -1379,28 +2045,33 @@
             ];
 
 
+
           openSong(
             randomSong
           );
+
 
         }
       );
 
 
-    /*
-    ==========================================
-    SORT
-    ==========================================
-    */
+
+    /* =========================
+       SORT
+    ========================== */
 
     document
-      .getElementById("sortButton")
+      .getElementById(
+        "sortButton"
+      )
       .addEventListener(
         "click",
         event => {
 
+
           alphabetical =
             !alphabetical;
+
 
 
           event.target.textContent =
@@ -1409,33 +2080,39 @@
               : "가나다순";
 
 
+
           renderSongs();
+
 
         }
       );
 
 
-    /*
-    ==========================================
-    THEME
-    ==========================================
-    */
+
+    /* =========================
+       THEME
+    ========================== */
 
     document
-      .getElementById("themeButton")
+      .getElementById(
+        "themeButton"
+      )
       .addEventListener(
         "click",
         () => {
+
 
           document.body.classList.toggle(
             "light"
           );
 
 
+
           const light =
             document.body.classList.contains(
               "light"
             );
+
 
 
           document.getElementById(
@@ -1445,29 +2122,21 @@
               ? "☀"
               : "☾";
 
+
         }
       );
 
 
-    /*
-    ==========================================
-    INITIAL LOAD
-    ==========================================
-    */
+
+    /* =========================
+       INITIAL LOAD
+    ========================== */
 
     renderSongs();
 
-  </main>
 
-  <footer>
-    © 2026 DDESA SONGBOOK · 팬 제작 비공식 노래책
-  </footer>
-
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle("light");
-    }
   </script>
 
 </body>
 </html>
+```
